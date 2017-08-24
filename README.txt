@@ -1,3 +1,12 @@
+TODO
+
+-Allow pressing of the Start button even though the clock started.
+
+
+
+
+------------------
+
 MIT License
 
 Copyright (c) 2017 DB-DEV
