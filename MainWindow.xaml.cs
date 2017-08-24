@@ -28,11 +28,16 @@ namespace clock
          * 
          * DB-dev
          * 
-         * /
+         */
 
+       
+        public static DateTime hora_s;  // Hora guardada 
+        public static DateTime hora_u;  // Hora ultima guardada 
 
-        public static DateTime hora_s;
-        public static Timer t_set;
+        public static TimeSpan hora_a;  // Acumulado de horas
+        public static TimeSpan res;     // Diferencia de horas
+
+        public static Timer t_set;      // Para refrescar el reloj
 
         public MainWindow()
         {
@@ -47,33 +52,71 @@ namespace clock
             // Inicializamos el timer el evento de actualización del reloj.
             t_set = new Timer(10);
             t_set.Elapsed += new ElapsedEventHandler(timerdelReloj);
+
+            // Inicializamos el Acumulado de horas
+            hora_a = new TimeSpan(0, 0, 0);
         }
 
         // Cuando pulsamos Start arrancamos el timer del reloj
         private void b_start_Click(object sender, RoutedEventArgs e)
         {
-            t_set.Enabled = true;
+            if (!t_set.Enabled)
+            {
+                // Grabamos la hora de cuando se le dio al Start
+                hora_s = DateTime.Now;
+
+                // Reiniciamos el acumulado
+                hora_a = new TimeSpan(0, 0, 0);
+
+                t_set.Enabled = true;
+            }
+        }
+
+        // Cuando pulsamos Continue el contador sigue
+        private void b_continue_Click(object sender, RoutedEventArgs e)
+        {
+            if (!t_set.Enabled)
+            {
+                hora_a = hora_a.Add(res);
+
+                hora_s = DateTime.Now;
+
+                t_set.Enabled = true;
+            }
+        }
+
+        // Cuando pulsamos Stop paramos el timer del reloj
+        private void b_stop_Click(object sender, RoutedEventArgs e)
+        {
+            if(t_set.Enabled)
+                t_set.Enabled = false;
         }
 
         // Logica tras el cada tick del timer
         private void timerdelReloj(Object source, System.Timers.ElapsedEventArgs e)
         {
-            hora_s = DateTime.Now;
+            hora_u = DateTime.Now;
+
+            // Para el crono, restamos la hora actual con de cuando se le pulsó al start
+            res = hora_u.Subtract(hora_s);
+
+            TimeSpan tiempoAux = res.Add(hora_a);
+
+            // Los TimeSpan son tan solo una hora, pero no da muchas opciones a la hora de formato, lo sumamos a una fecha referencia y lo usamos para formato
+            DateTime referencia = new DateTime(2017, 1, 1);
+            referencia += tiempoAux;
+            
+            String aux = referencia.ToString("HH:mm:ss:ff");
 
             // Al parecer en WPF los elementos de la UI solo se pueden acceder desde los thread de la UI 
             // y hay que hacer uso de Dispatch para poder hacer lo que sea sobre esos elementos.
             t_clock.Dispatcher.BeginInvoke(DispatcherPriority.Normal, 
                 (Action)(() =>
                 {
-                    t_clock.Text = hora_s.ToString("HH:mm:ss:ff");
+                    t_clock.Text = aux;
                 })
             );
         }
 
-        // Cuando pulsamos Stop paramos el timer del reloj
-        private void b_stop_Click(object sender, RoutedEventArgs e)
-        {
-            t_set.Enabled = false;
-        }
     }
 }
