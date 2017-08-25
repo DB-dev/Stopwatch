@@ -19,7 +19,7 @@
         </Grid.RowDefinitions>
         <TextBlock x:Name="t_clock" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Center" FontWeight="Bold" Cursor="Arrow" FontSize="24" Grid.Row="0" Grid.ColumnSpan="4"><Run Text="00:00:00"/><Run Text=":00"/></TextBlock>
         <Button x:Name="b_start" Content="Start" Click="b_start_Click" Grid.Row="1" Grid.Column="0"/>
-        <Button x:Name="b_restart" Content="Restart" Grid.Row="1" Grid.Column="1" Click="b_restart_Click"/>
+        <Button x:Name="b_reset" Content="Reset" Grid.Row="1" Grid.Column="1" Click="b_reset_Click"/>
         <Button x:Name="b_stop" Content="Stop" Click="b_stop_Click" Grid.Column="3" Grid.Row="1"/>
         <Button x:Name="b_continue" Content="Continue" Click="b_continue_Click" Grid.Column="2" Grid.Row="1"/>
     </Grid>

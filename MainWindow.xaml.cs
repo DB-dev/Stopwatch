@@ -55,6 +55,8 @@ namespace clock
 
             // Inicializamos el Acumulado de horas
             hora_a = new TimeSpan(0, 0, 0);
+
+            b_continue.IsEnabled = false;
         }
 
         // Cuando pulsamos Start arrancamos el timer del reloj
@@ -67,6 +69,8 @@ namespace clock
             hora_a = new TimeSpan(0, 0, 0);
 
             t_set.Enabled = true;
+
+            b_continue.IsEnabled = false;
         }
 
         // Cuando pulsamos Continue el contador sigue
@@ -79,11 +83,13 @@ namespace clock
                 hora_s = DateTime.Now;
 
                 t_set.Enabled = true;
+
+                b_continue.IsEnabled = false;
             }
         }
 
-        // Cuando pulsamos Restart reiniciamos todo y lo paramos a cero
-        private void b_restart_Click(object sender, RoutedEventArgs e)
+        // Cuando pulsamos reset reiniciamos todo y lo paramos a cero
+        private void b_reset_Click(object sender, RoutedEventArgs e)
         {
             t_set.Enabled = false;
 
@@ -91,13 +97,18 @@ namespace clock
             hora_a = new TimeSpan(0, 0, 0);
 
             t_clock.Text = "00:00:00:00";
+            b_continue.IsEnabled = false;
         }
 
         // Cuando pulsamos Stop paramos el timer del reloj
         private void b_stop_Click(object sender, RoutedEventArgs e)
         {
-            if(t_set.Enabled)
+            if (t_set.Enabled)
+            {
                 t_set.Enabled = false;
+
+                b_continue.IsEnabled = true;
+            }
         }
 
         // Logica tras el cada tick del timer
