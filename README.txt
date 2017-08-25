@@ -1,5 +1,3 @@
-Test2
-
 MIT License
 
 Copyright (c) 2017 DB-DEV
