@@ -15,7 +15,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 
-
 namespace clock
 {
     /// <summary>
@@ -25,7 +24,7 @@ namespace clock
     {
 
         /**
-         * Clock event test-
+         * Clock event test
          * 
          * DB-dev
          * 
@@ -61,16 +60,13 @@ namespace clock
         // Cuando pulsamos Start arrancamos el timer del reloj
         private void b_start_Click(object sender, RoutedEventArgs e)
         {
-            if (!t_set.Enabled)
-            {
-                // Grabamos la hora de cuando se le dio al Start
-                hora_s = DateTime.Now;
+            // Grabamos la hora de cuando se le dio al Start
+            hora_s = DateTime.Now;
 
-                // Reiniciamos el acumulado
-                hora_a = new TimeSpan(0, 0, 0);
+            // Reiniciamos el acumulado
+            hora_a = new TimeSpan(0, 0, 0);
 
-                t_set.Enabled = true;
-            }
+            t_set.Enabled = true;
         }
 
         // Cuando pulsamos Continue el contador sigue

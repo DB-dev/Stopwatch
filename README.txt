@@ -1,8 +1,6 @@
 TODO
 
--Allow pressing of the Start button even though the clock started.
-
-
+- Reset to zero button.
 
 
 ------------------
