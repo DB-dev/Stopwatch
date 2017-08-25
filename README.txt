@@ -1,10 +1,3 @@
-TODO
-
-- Reset to zero button.
-
-
-------------------
-
 MIT License
 
 Copyright (c) 2017 DB-DEV

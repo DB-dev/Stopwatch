@@ -5,18 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:clock"
         mc:Ignorable="d"
-        Title="Clock" Height="125" Width="245" MinWidth="245" MinHeight="125" MaxWidth="245" MaxHeight="125" ScrollViewer.VerticalScrollBarVisibility="Disabled" ResizeMode="NoResize">
+        Title="Clock" Height="78.5" Width="245" MinWidth="245" MinHeight="125" ScrollViewer.VerticalScrollBarVisibility="Disabled" ResizeMode="NoResize">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="60*"/>
+            <ColumnDefinition Width="60*"/>
+            <ColumnDefinition Width="60*"/>
+            <ColumnDefinition Width="60*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock x:Name="t_clock" Margin="10,10,10,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Center" FontWeight="Bold" Cursor="Arrow" FontSize="24"><Run Text="00:00:00"/><Run Text=":00"/></TextBlock>
-        <Button x:Name="b_start" Content="Start" Margin="0,66,169,0" HorizontalAlignment="Right" Width="60" Height="20" VerticalAlignment="Top" Click="b_start_Click"/>
-        <Button x:Name="b_stop" Content="Stop" HorizontalAlignment="Left" Margin="169,66,0,0" VerticalAlignment="Top" Width="60" Click="b_stop_Click"/>
-        <Button x:Name="b_continue" Content="Continue" Margin="91,66,0,0" Click="b_continue_Click" HorizontalAlignment="Left" Width="60" Height="20" VerticalAlignment="Top"/>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="t_clock" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Center" FontWeight="Bold" Cursor="Arrow" FontSize="24" Grid.Row="0" Grid.ColumnSpan="4"><Run Text="00:00:00"/><Run Text=":00"/></TextBlock>
+        <Button x:Name="b_start" Content="Start" Click="b_start_Click" Grid.Row="1" Grid.Column="0"/>
+        <Button x:Name="b_restart" Content="Restart" Grid.Row="1" Grid.Column="1" Click="b_restart_Click"/>
+        <Button x:Name="b_stop" Content="Stop" Click="b_stop_Click" Grid.Column="3" Grid.Row="1"/>
+        <Button x:Name="b_continue" Content="Continue" Click="b_continue_Click" Grid.Column="2" Grid.Row="1"/>
     </Grid>
 </Window>

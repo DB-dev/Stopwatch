@@ -24,7 +24,7 @@ namespace clock
     {
 
         /**
-         * Clock event test
+         * Stopwatch
          * 
          * DB-dev
          * 
@@ -80,6 +80,17 @@ namespace clock
 
                 t_set.Enabled = true;
             }
+        }
+
+        // Cuando pulsamos Restart reiniciamos todo y lo paramos a cero
+        private void b_restart_Click(object sender, RoutedEventArgs e)
+        {
+            t_set.Enabled = false;
+
+            // Reiniciamos el acumulado
+            hora_a = new TimeSpan(0, 0, 0);
+
+            t_clock.Text = "00:00:00:00";
         }
 
         // Cuando pulsamos Stop paramos el timer del reloj
